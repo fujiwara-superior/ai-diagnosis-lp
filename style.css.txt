@@ -25,12 +25,14 @@ a {
 
 /* ヘッダー */
 .header {
-    background-color: #fff;
-    border-bottom: 1px solid #e0e0e0;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(37, 99, 235, 0.1);
     padding: 20px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .header .container {
@@ -42,11 +44,17 @@ a {
 .logo h1 {
     font-size: 24px;
     font-weight: bold;
-    color: #2563eb;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .logo h1 a {
-    color: #2563eb;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .nav {
@@ -57,486 +65,688 @@ a {
 .nav a {
     color: #333;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s;
+}
+
+.nav a:hover::after {
+    width: 100%;
 }
 
 .nav a:hover {
-    color: #2563eb;
+    color: #667eea;
 }
 
 /* ヒーローセクション */
 .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
-    padding: 80px 0;
+    padding: 120px 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-title {
-    font-size: 42px;
+    font-size: 48px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     line-height: 1.4;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .hero-subtitle {
-    font-size: 24px;
-    margin-bottom: 40px;
+    font-size: 28px;
+    margin-bottom: 50px;
     line-height: 1.6;
+    opacity: 0.95;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .cta-button {
     display: inline-block;
-    background-color: #ff6b35;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
     color: #fff;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
-    padding: 20px 60px;
+    padding: 25px 70px;
     border-radius: 50px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all 0.3s;
     cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+    animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
 .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
 }
 
 .cta-button-large {
-    font-size: 24px;
-    padding: 25px 80px;
+    font-size: 26px;
+    padding: 30px 90px;
 }
 
 .hero-note {
-    margin-top: 20px;
-    font-size: 16px;
+    margin-top: 30px;
+    font-size: 18px;
+    opacity: 0.9;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
 }
 
 .highlight {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     color: #ffeb3b;
+    text-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
 }
 
 /* セクション共通 */
 section {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 .section-title {
-    font-size: 36px;
+    font-size: 42px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 50px;
-    color: #2563eb;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 20px auto 0;
+    border-radius: 2px;
 }
 
 /* 悩みセクション */
 .problems {
-    background-color: #f8f9fa;
+    background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
 }
 
 .problem-list {
     max-width: 800px;
-    margin: 0 auto 30px;
+    margin: 0 auto 40px;
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
 }
 
 .problem-item {
     font-size: 20px;
-    padding: 15px 0;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    padding-left: 50px;
+    transition: all 0.3s;
+}
+
+.problem-item:last-child {
+    border-bottom: none;
+}
+
+.problem-item::before {
+    content: '✓';
+    position: absolute;
+    left: 15px;
+    color: #ff6b35;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.problem-item:hover {
+    background-color: #f8f9fa;
+    padding-left: 60px;
 }
 
 .problems-text {
     text-align: center;
-    font-size: 18px;
-    margin-top: 40px;
+    font-size: 20px;
+    margin-top: 50px;
+    font-weight: 500;
 }
 
 /* なぜAIか */
 .why-ai {
-    background-color: #fff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+}
+
+.why-ai .section-title {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+}
+
+.why-ai .section-title::after {
+    background: rgba(255,255,255,0.5);
 }
 
 .why-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    font-size: 18px;
+    font-size: 20px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 50px;
+    border-radius: 20px;
 }
 
 .why-list {
-    margin: 20px 0 20px 40px;
+    margin: 30px 0 30px 40px;
+    list-style: none;
 }
 
 .why-list li {
-    margin: 10px 0;
+    margin: 15px 0;
+    position: relative;
+    padding-left: 30px;
+}
+
+.why-list li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: #ffeb3b;
 }
 
 .why-highlight {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
-    color: #2563eb;
-    margin: 30px 0 20px;
+    margin: 40px 0 30px;
+    text-align: center;
 }
 
 .why-conclusion {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     text-align: center;
-    margin-top: 40px;
-    padding: 30px;
-    background-color: #fff3cd;
-    border-left: 5px solid #ff6b35;
+    margin-top: 50px;
+    padding: 40px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 15px;
+    border: 2px solid rgba(255,255,255,0.3);
 }
 
 /* 3つの未来 */
 .benefits {
-    background-color: #f8f9fa;
+    background: linear-gradient(180deg, #fff 0%, #f8f9fa 100%);
 }
 
 .benefit-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 50px;
+    gap: 40px;
+    margin-top: 60px;
 }
 
 .benefit-card {
-    background-color: #fff;
-    padding: 40px 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: #fff;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
     text-align: center;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15);
+    border-color: #667eea;
 }
 
 .benefit-number {
-    font-size: 48px;
+    font-size: 64px;
     font-weight: bold;
-    color: #2563eb;
-    margin-bottom: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 25px;
 }
 
 .benefit-card h3 {
-    font-size: 22px;
-    margin-bottom: 15px;
+    font-size: 24px;
+    margin-bottom: 20px;
     color: #333;
 }
 
 .benefit-card p {
     font-size: 16px;
     color: #666;
+    line-height: 1.8;
 }
 
 /* サービス内容 */
 .service {
-    background-color: #fff;
+    background: #fff;
 }
 
 .service-intro {
     text-align: center;
-    font-size: 18px;
-    margin-bottom: 50px;
+    font-size: 20px;
+    margin-bottom: 60px;
+    color: #666;
 }
 
 .service-items {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .service-item {
-    background-color: #f8f9fa;
-    padding: 40px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    border-left: 5px solid #2563eb;
+    background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+    padding: 50px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    border-left: 6px solid #667eea;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+}
+
+.service-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
 }
 
 .service-item h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #2563eb;
+    font-size: 26px;
+    margin-bottom: 25px;
+    color: #667eea;
 }
 
 .service-item p {
-    font-size: 16px;
-    margin-bottom: 15px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.8;
 }
 
 .service-item ul {
-    margin: 15px 0 15px 30px;
+    margin: 20px 0 20px 30px;
+    list-style: none;
 }
 
 .service-item li {
-    margin: 10px 0;
+    margin: 15px 0;
+    position: relative;
+    padding-left: 30px;
+}
+
+.service-item li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .service-example {
-    background-color: #fff;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 5px;
-    font-size: 15px;
+    background: #fff;
+    padding: 30px;
+    margin-top: 25px;
+    border-radius: 15px;
+    font-size: 16px;
+    border: 2px dashed #667eea;
 }
 
 /* 導入事例 */
 .case-study {
-    background-color: #f8f9fa;
+    background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
 }
 
 .case-items {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .case-item {
-    background-color: #fff;
-    padding: 40px;
-    margin-bottom: 40px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: #fff;
+    padding: 50px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    border-top: 5px solid #667eea;
 }
 
 .case-item h3 {
-    font-size: 22px;
-    margin-bottom: 25px;
-    color: #2563eb;
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #667eea;
 }
 
 .case-content {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .case-before h4,
 .case-after h4,
 .case-result h4 {
-    font-size: 18px;
-    margin: 20px 0 10px;
+    font-size: 20px;
+    margin: 25px 0 15px;
     color: #333;
+    font-weight: bold;
 }
 
 .case-result ul {
     margin-left: 30px;
+    list-style: none;
 }
 
 .case-result li {
-    margin: 8px 0;
+    margin: 12px 0;
+    position: relative;
+    padding-left: 30px;
+    font-size: 18px;
+}
+
+.case-result li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #ff6b35;
+    font-weight: bold;
 }
 
 .case-voice {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-left: 4px solid #ff6b35;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
+    padding: 30px;
+    border-left: 5px solid #ff6b35;
     font-style: italic;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 1.8;
 }
 
 .case-name {
     display: block;
-    margin-top: 10px;
+    margin-top: 15px;
     font-style: normal;
     font-weight: bold;
     text-align: right;
+    color: #333;
 }
 
 /* 価格 */
 .pricing {
-    background-color: #fff;
-    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+}
+
+.pricing .section-title {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+}
+
+.pricing .section-title::after {
+    background: rgba(255,255,255,0.5);
 }
 
 .pricing-box {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 60px 40px;
-    background-color: #f8f9fa;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 70px 50px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    text-align: center;
 }
 
 .pricing-normal {
-    font-size: 24px;
+    font-size: 28px;
     text-decoration: line-through;
     color: #999;
 }
 
 .pricing-arrow {
-    font-size: 36px;
+    font-size: 48px;
     color: #ff6b35;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 .pricing-special {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     color: #ff6b35;
-    margin: 20px 0;
+    margin: 25px 0;
 }
 
 .pricing-price {
-    font-size: 64px;
+    font-size: 72px;
     font-weight: bold;
-    color: #2563eb;
-    margin: 20px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 30px 0;
 }
 
 .pricing-tax {
-    font-size: 24px;
+    font-size: 28px;
     color: #666;
 }
 
 .pricing-note {
-    font-size: 16px;
+    font-size: 18px;
     color: #666;
-    margin: 30px 0;
+    margin: 35px 0;
 }
 
 /* 返金保証 */
 .guarantee {
-    background-color: #fff3cd;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
     text-align: center;
 }
 
 .guarantee-text {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    font-size: 20px;
-    line-height: 2;
+    font-size: 22px;
+    line-height: 2.2;
 }
 
 .guarantee-text strong {
-    font-size: 24px;
+    font-size: 28px;
     color: #ff6b35;
+    display: block;
+    margin: 30px 0;
 }
 
 /* よくある質問 */
 .faq {
-    background-color: #f8f9fa;
+    background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
 }
 
 .faq-items {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .faq-item {
-    background-color: #fff;
-    padding: 30px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    background: #fff;
+    padding: 40px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-left: 5px solid #667eea;
+    transition: all 0.3s;
+}
+
+.faq-item:hover {
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
 }
 
 .faq-question {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
-    color: #2563eb;
-    margin-bottom: 15px;
+    color: #667eea;
+    margin-bottom: 20px;
 }
 
 .faq-answer {
-    font-size: 16px;
+    font-size: 18px;
     color: #666;
-    line-height: 1.8;
+    line-height: 2;
 }
 
 /* お申込みの流れ */
 .flow {
-    background-color: #fff;
+    background: #fff;
 }
 
 .flow-items {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
     text-align: center;
 }
 
 .flow-item {
-    background-color: #f8f9fa;
-    padding: 30px;
-    margin: 20px 0;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+    padding: 40px;
+    margin: 25px 0;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+}
+
+.flow-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
 }
 
 .flow-number {
     display: inline-block;
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 20px;
-    margin-bottom: 15px;
+    padding: 12px 30px;
+    border-radius: 30px;
+    margin-bottom: 20px;
 }
 
 .flow-item h3 {
-    font-size: 20px;
+    font-size: 22px;
     color: #333;
 }
 
 .flow-arrow {
-    font-size: 36px;
-    color: #2563eb;
-    margin: 10px 0;
+    font-size: 48px;
+    color: #667eea;
+    margin: 15px 0;
 }
 
 .flow-cta {
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 /* 最後のメッセージ */
 .final-message {
-    background-color: #f8f9fa;
+    background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
 }
 
 .final-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     text-align: center;
 }
 
 .final-content p {
-    font-size: 18px;
-    margin: 20px 0;
+    font-size: 20px;
+    margin: 25px 0;
+    line-height: 2;
 }
 
 .final-choice {
-    margin: 60px 0;
+    margin: 70px 0;
 }
 
 .final-choice h3 {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
-    color: #2563eb;
-    margin-bottom: 40px;
+    color: #667eea;
+    margin-bottom: 50px;
 }
 
 .choice-options {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
-    max-width: 700px;
+    gap: 30px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
 .choice-option {
-    padding: 30px;
-    border-radius: 10px;
+    padding: 40px;
+    border-radius: 20px;
     text-align: left;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .choice-bad {
-    background-color: #ffebee;
-    border: 2px solid #ef5350;
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border: 3px solid #ef5350;
 }
 
 .choice-good {
-    background-color: #e8f5e9;
-    border: 2px solid #66bb6a;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border: 3px solid #66bb6a;
 }
 
 .choice-option h4 {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 22px;
+    margin-bottom: 15px;
 }
 
 .choice-bad h4 {
@@ -548,155 +758,165 @@ section {
 }
 
 .choice-option p {
-    font-size: 16px;
+    font-size: 18px;
     margin: 0;
 }
 
 .final-cta-text {
-    font-size: 20px !important;
+    font-size: 24px !important;
     font-weight: bold;
-    margin: 50px 0 30px !important;
+    margin: 60px 0 40px !important;
 }
 
 .final-note {
-    margin-top: 20px;
-    font-size: 18px;
+    margin-top: 25px;
+    font-size: 20px;
     color: #ff6b35;
     font-weight: bold;
 }
 
 /* フッター */
 .footer {
-    background-color: #333;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     color: #fff;
-    padding: 40px 0 20px;
+    padding: 60px 0 30px;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .footer-company h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 22px;
+    margin-bottom: 20px;
 }
 
 .footer-company p {
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 15px;
+    line-height: 2;
+    opacity: 0.9;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
 .footer-links a {
     color: #fff;
-    font-size: 14px;
-    transition: color 0.3s;
+    font-size: 15px;
+    transition: all 0.3s;
+    opacity: 0.9;
 }
 
 .footer-links a:hover {
-    color: #2563eb;
+    opacity: 1;
+    transform: translateX(5px);
+    color: #667eea;
 }
 
 .footer-copyright {
     text-align: center;
     font-size: 14px;
-    color: #999;
-    border-top: 1px solid #555;
-    padding-top: 20px;
+    color: rgba(255,255,255,0.7);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 25px;
 }
 
 /* 特定商取引法ページ */
 .tokushoho {
-    background-color: #f8f9fa;
-    padding: 80px 0;
+    background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
+    padding: 100px 0;
 }
 
 .page-title {
-    font-size: 36px;
+    font-size: 42px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 50px;
-    color: #2563eb;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .tokushoho-content {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
-    background-color: #fff;
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: #fff;
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
 }
 
 .tokushoho-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
 .tokushoho-table th,
 .tokushoho-table td {
-    padding: 20px;
+    padding: 25px;
     border: 1px solid #e0e0e0;
     text-align: left;
     vertical-align: top;
 }
 
 .tokushoho-table th {
-    background-color: #f8f9fa;
+    background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
     font-weight: bold;
-    width: 200px;
-    color: #2563eb;
+    width: 220px;
+    color: #667eea;
 }
 
 .tokushoho-table td {
-    line-height: 1.8;
+    line-height: 2;
+    font-size: 16px;
 }
 
 .tokushoho-note {
-    background-color: #fff3cd;
-    padding: 30px;
-    border-left: 5px solid #ff6b35;
-    margin-bottom: 30px;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
+    padding: 40px;
+    border-left: 6px solid #ff6b35;
+    margin-bottom: 40px;
+    border-radius: 10px;
 }
 
 .tokushoho-note h2 {
-    font-size: 22px;
-    margin-bottom: 15px;
-    color: #2563eb;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #667eea;
 }
 
 .tokushoho-note p {
-    font-size: 16px;
-    line-height: 1.8;
+    font-size: 17px;
+    line-height: 2;
 }
 
 .tokushoho-back {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 .back-button {
     display: inline-block;
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
-    padding: 15px 40px;
+    padding: 20px 50px;
     border-radius: 50px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all 0.3s;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
 }
 
 .back-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
 }
 
 /* レスポンシブ */
@@ -706,15 +926,15 @@ section {
     }
 
     .hero-title {
-        font-size: 28px;
+        font-size: 32px;
     }
 
     .hero-subtitle {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .section-title {
-        font-size: 28px;
+        font-size: 32px;
     }
 
     .benefit-cards {
@@ -727,28 +947,36 @@ section {
 
     .footer-content {
         flex-direction: column;
-        gap: 30px;
+        gap: 40px;
     }
 
     .cta-button {
         font-size: 18px;
-        padding: 15px 40px;
+        padding: 20px 50px;
     }
 
     .pricing-price {
-        font-size: 48px;
+        font-size: 56px;
     }
 
     .tokushoho-content {
-        padding: 30px 20px;
+        padding: 40px 25px;
     }
 
     .tokushoho-table th {
-        width: 120px;
+        width: 140px;
         font-size: 14px;
     }
 
     .tokushoho-table td {
         font-size: 14px;
+    }
+
+    .service-item {
+        padding: 35px 25px;
+    }
+
+    .case-item {
+        padding: 35px 25px;
     }
 }
